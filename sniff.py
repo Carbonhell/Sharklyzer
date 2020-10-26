@@ -18,7 +18,8 @@ except Exception:
 def start_sniff(t):
     cur_datetime = datetime.now().strftime("%d-%m-%Y-%H-%M-%S")
     output_filename = t + '_' + cur_datetime + '.cap'
-    capture = pyshark.LiveCapture(interface='Wi-Fi', output_file='sniff_results/' + output_filename)  # netsh wlan show interfaces
+    capture = pyshark.LiveCapture(interface='Wi-Fi',
+                                  output_file='sniff_results/' + output_filename)  # netsh wlan show interfaces
     capture.sniff(timeout=60 * int(t))  # seconds
     capture.close()
 
@@ -39,4 +40,4 @@ sniff_thread.start()
 open_websites(websites, driver)
 sniff_thread.join()  # Wait until sniffing ends
 driver.quit()
-print("Live-capture completed.")
+print("\aLive-capture completed.")

@@ -28,6 +28,7 @@ for packet in analyzer:
         # print("src: " + packet.ip.src + ", equal? " + str(packet.ip.src == local_ip))
         # print("tcp port: " + packet.tcp.port + ", equal? "+ str(packet.tcp.port == '443'))
         # print("Match? " + str((packet.tcp.port == '443') and (packet.ip.dst == local_ip)))
+        # if packet.ip.dst == local_ip and packet.tcp.port == '443':
         if packet.tcp.port == '443':
             # print("Found!")
             https += 1
@@ -35,12 +36,14 @@ for packet in analyzer:
         pass
     # Is it a third-party http request?
     try:
+        # if packet.ip.src == local_ip and packet.http and any([x for x in websites if not (packet.http.host == x or 'www.' + packet.http.host == x)]):
         if packet.http and any([x for x in websites if not (packet.http.host == x or 'www.' + packet.http.host == x)]):
             third_party += 1
     except:
         pass
 
 end_time = datetime.now() - start_time
+print("\aAnalysis completed.")
 print("HTTPS: " + str(https))
 print("Third party http packets: " + str(third_party))
 print("Time: " + str(end_time.seconds) + " seconds")
