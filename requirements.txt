@@ -1,0 +1,5 @@
+py==1.9.0
+git+git://github.com/KimiNewt/pyshark@master#egg=pyshark
+lxml==4.6.1
+setuptools==47.1.0
+selenium==3.141.0

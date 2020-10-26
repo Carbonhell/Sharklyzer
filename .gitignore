@@ -1,0 +1,4 @@
+.idea
+sniff_results/*.cap
+debug.log
+*.iml
